@@ -1,0 +1,26 @@
+{
+  "name": "noted",
+  "version": "1.0.0",
+  "description": "A simple app for saving and revisiting quotes that are worth remembering.",
+  "scripts": {
+    "dev": "tsx ./src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janosch-pueschel/noted.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@tsconfig/node24": "^24.0.5",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.2.0",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2"
+  }
+}
