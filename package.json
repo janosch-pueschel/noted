@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A simple app for saving and revisiting quotes that are worth remembering.",
   "scripts": {
-    "dev": "tsx ./src/server.ts"
+    "dev": "tsx watch ./src/server.ts"
   },
   "repository": {
     "type": "git",
