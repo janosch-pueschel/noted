@@ -13,11 +13,11 @@ export async function getAll(req: Request, res: Response) {
 }
 
 export async function getById(req: Request, res: Response) {
-  const { bookId } = req.params;
+  const bookId = Number(req.params.bookId);
 
   try {
     const book = await prisma.book.findUnique({
-      where: { id: Number(bookId) },
+      where: { id: bookId },
     });
     res.json(book);
   } catch (err) {
