@@ -19,3 +19,7 @@ export const createBookValidation = [
 export const getBookByIdValidation = [
   param("bookId").isInt().withMessage("Book ID has to be a number"),
 ];
+
+export const destroyBookValidation = [
+  param("bookId").isInt().withMessage("Book ID has to be a number"),
+];

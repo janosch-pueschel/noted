@@ -39,3 +39,17 @@ export async function create(req: Request, res: Response) {
     res.status(500).json({ message: "Failed to create book." });
   }
 }
+
+export async function destroy(req: Request, res: Response) {
+  const bookId = Number(req.params.bookId);
+
+  try {
+    await prisma.book.delete({
+      where: { id: bookId },
+    });
+    res.sendStatus(204);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to delete book." });
+  }
+}
