@@ -31,3 +31,17 @@ export async function getById(req: Request, res: Response) {
     res.status(500).json({ message: "Failed to fetch book." });
   }
 }
+
+export async function create(req: Request, res: Response) {
+  const { title, author } = req.body;
+
+  try {
+    const book = await prisma.book.create({
+      data: { title: title, author: author },
+    });
+    res.status(201).json(book);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to create book." });
+  }
+}

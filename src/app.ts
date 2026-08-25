@@ -4,6 +4,8 @@ import { booksRouter } from "./routes/books";
 
 const app = express();
 
+app.use(express.json());
+
 app.use("/books", booksRouter);
 
 app.get(/.*/, (req, res) => {
