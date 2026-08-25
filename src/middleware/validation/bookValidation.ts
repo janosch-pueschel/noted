@@ -1,4 +1,4 @@
-import { body } from "express-validator";
+import { body, param } from "express-validator";
 
 export const createBookValidation = [
   body("title")
@@ -14,4 +14,8 @@ export const createBookValidation = [
     .withMessage("Author is required")
     .isLength({ max: 255 })
     .withMessage("Author must not exceed 255 characters"),
+];
+
+export const getBookByIdValidation = [
+  param("bookId").isInt().withMessage("Book ID has to be a number"),
 ];

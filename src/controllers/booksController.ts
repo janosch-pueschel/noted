@@ -15,12 +15,6 @@ export async function getAll(req: Request, res: Response) {
 export async function getById(req: Request, res: Response) {
   const { bookId } = req.params;
 
-  if (isNaN(Number(bookId))) {
-    return res
-      .status(404)
-      .json({ message: "Failed to fetch book. Invalid book id." });
-  }
-
   try {
     const book = await prisma.book.findUnique({
       where: { id: Number(bookId) },
