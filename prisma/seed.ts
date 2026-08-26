@@ -9,6 +9,9 @@ const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
+  await prisma.quote.deleteMany();
+  await prisma.book.deleteMany();
+
   const book1984 = await prisma.book.upsert({
     where: {
       title_author: {
@@ -84,7 +87,6 @@ async function main() {
         bookId: bookSiddhartha.id,
       },
     ],
-    skipDuplicates: true,
   });
 }
 
