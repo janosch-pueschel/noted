@@ -4,6 +4,7 @@ import {
   createBookValidation,
   getBookByIdValidation,
   destroyBookValidation,
+  updateBookValidation,
 } from "../middleware/validation/bookValidation";
 import { handleValidation } from "../middleware/validation/handleValidation";
 import {
@@ -11,6 +12,7 @@ import {
   getById,
   create,
   destroy,
+  patch,
 } from "../controllers/booksController";
 
 export const booksRouter = express.Router();
@@ -18,4 +20,10 @@ export const booksRouter = express.Router();
 booksRouter.get("/", getAll);
 booksRouter.get("/:bookId", getBookByIdValidation, handleValidation, getById);
 booksRouter.post("/", createBookValidation, handleValidation, create);
-booksRouter.delete("/:bookId", destroyBookValidation, handleValidation, destroy);
+booksRouter.delete(
+  "/:bookId",
+  destroyBookValidation,
+  handleValidation,
+  destroy,
+);
+booksRouter.patch("/:bookId", updateBookValidation, handleValidation, patch);

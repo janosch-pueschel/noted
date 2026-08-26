@@ -53,3 +53,29 @@ export async function destroy(req: Request, res: Response) {
     res.status(500).json({ message: "Failed to delete book." });
   }
 }
+
+export async function patch(req: Request, res: Response) {
+  const { bookId } = req.params;
+  const { author, title } = req.body;
+
+  const data: { author?: string; title?: string } = {};
+
+  if (author !== undefined) {
+    data.author = author;
+  }
+
+  if (title !== undefined) {
+    data.title = title;
+  }
+
+  try {
+    const book = await prisma.book.update({
+      where: { id: Number(bookId) },
+      data,
+    });
+    res.json(book);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to update book." });
+  }
+}
