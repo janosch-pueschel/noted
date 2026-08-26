@@ -1,4 +1,4 @@
-import express from "express";
+import { Router } from "express";
 
 import {
   createBookValidation,
@@ -15,7 +15,7 @@ import {
   patch,
 } from "../controllers/booksController";
 
-export const booksRouter = express.Router();
+export const booksRouter = Router();
 
 booksRouter.get("/", getAll);
 booksRouter.get("/:bookId", getBookByIdValidation, handleValidation, getById);
