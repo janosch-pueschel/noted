@@ -9,7 +9,7 @@ const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  await prisma.book.upsert({
+  const book1984 = await prisma.book.upsert({
     where: {
       title_author: {
         title: "1984",
@@ -23,7 +23,7 @@ async function main() {
     },
   });
 
-  await prisma.book.upsert({
+  const bookAlchemist = await prisma.book.upsert({
     where: {
       title_author: {
         title: "Der Alchimist",
@@ -37,7 +37,7 @@ async function main() {
     },
   });
 
-  await prisma.book.upsert({
+  const bookSiddhartha = await prisma.book.upsert({
     where: {
       title_author: {
         title: "Siddhartha",
@@ -49,6 +49,42 @@ async function main() {
       title: "Siddhartha",
       author: "Hermann Hesse",
     },
+  });
+
+  await prisma.quote.createMany({
+    data: [
+      {
+        text: "Big Brother is watching you.",
+        page: 3,
+        bookId: book1984.id,
+      },
+      {
+        text: "War is peace. Freedom is slavery. Ignorance is strength.",
+        page: 4,
+        bookId: book1984.id,
+      },
+      {
+        text: "Every person has a unique path to follow.",
+        page: 27,
+        bookId: bookAlchemist.id,
+      },
+      {
+        text: "Dreams can point us toward what truly matters.",
+        page: 41,
+        bookId: bookAlchemist.id,
+      },
+      {
+        text: "Wisdom cannot simply be taught; it must be experienced.",
+        page: 18,
+        bookId: bookSiddhartha.id,
+      },
+      {
+        text: "The search for meaning is ultimately a personal journey.",
+        page: 52,
+        bookId: bookSiddhartha.id,
+      },
+    ],
+    skipDuplicates: true,
   });
 }
 
