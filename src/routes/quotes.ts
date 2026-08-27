@@ -1,8 +1,11 @@
 import { Router } from "express";
 
 import { handleValidation } from "../middleware/validation/handleValidation";
-import { getQuoteByIdValidation } from "../middleware/validation/quoteValidation";
-import { getAll, getById } from "../controllers/quotesController";
+import {
+  getQuoteByIdValidation,
+  destroyQuoteValidation,
+} from "../middleware/validation/quoteValidation";
+import { getAll, getById, destroy } from "../controllers/quotesController";
 
 export const quotesRouter = Router();
 
@@ -12,4 +15,11 @@ quotesRouter.get(
   getQuoteByIdValidation,
   handleValidation,
   getById,
+);
+
+quotesRouter.delete(
+  "/:quoteId",
+  destroyQuoteValidation,
+  handleValidation,
+  destroy,
 );

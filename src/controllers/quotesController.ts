@@ -33,3 +33,20 @@ export async function getById(req: Request, res: Response) {
     res.status(500).json({ message: "Failed to fetch quote." });
   }
 }
+
+export async function destroy(req: Request, res: Response) {
+  const quoteId = Number(req.params.quoteId);
+
+  try {
+    await prisma.quote.delete({
+      where: {
+        id: quoteId,
+      },
+    });
+    
+    res.sendStatus(204);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to delete quote." });
+  }
+}
