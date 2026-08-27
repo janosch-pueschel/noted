@@ -1,7 +1,15 @@
 import { Router } from "express";
 
-import { getAll } from "../controllers/quotesController";
+import { handleValidation } from "../middleware/validation/handleValidation";
+import { getQuoteByIdValidation } from "../middleware/validation/quoteValidation";
+import { getAll, getById } from "../controllers/quotesController";
 
 export const quotesRouter = Router();
 
 quotesRouter.get("/", getAll);
+quotesRouter.get(
+  "/:quoteId",
+  getQuoteByIdValidation,
+  handleValidation,
+  getById,
+);
