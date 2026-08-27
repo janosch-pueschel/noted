@@ -19,6 +19,13 @@ export async function getById(req: Request, res: Response) {
     const book = await prisma.book.findUnique({
       where: { id: bookId },
     });
+
+    if (!book) {
+      return res.status(404).json({
+        message: "Book not found.",
+      });
+    }
+
     res.json(book);
   } catch (err) {
     console.error(err);
