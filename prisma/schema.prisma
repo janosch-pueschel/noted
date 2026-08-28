@@ -26,7 +26,8 @@ model Book {
 model Quote {
   id        Int      @id @default(autoincrement())
   text      String
-  page      Int?
+  startPage Int?     @map("start_page")
+  endPage   Int?     @map("end_page")
   createdAt DateTime @default(now()) @map("created_at")
   book      Book     @relation(fields: [bookId], references: [id])
   bookId    Int      @map("book_id")
