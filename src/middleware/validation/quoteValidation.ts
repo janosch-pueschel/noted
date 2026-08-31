@@ -55,3 +55,36 @@ export const createQuoteValidation = [
     return true;
   }),
 ];
+
+export const patchQuoteValidation = [
+  param("quoteId")
+    .isInt()
+    .withMessage("Quote ID has to be a positive integer"),
+
+  body("text")
+    .optional()
+    .trim()
+    .notEmpty()
+    .withMessage("Quote text is required"),
+
+  body("startPage")
+    .optional({ values: "null" })
+    .trim()
+    .isInt({ min: 1 })
+    .withMessage("Start page number has to be a positive integer")
+    .toInt(),
+
+  body("endPage")
+    .optional({ values: "null" })
+    .trim()
+    .isInt({ min: 1 })
+    .withMessage("End page number has to be a positive integer")
+    .toInt(),
+
+  body("bookId")
+    .optional()
+    .trim()
+    .isInt({ min: 1 })
+    .withMessage("Book ID has to be a positive integer")
+    .toInt(),
+];

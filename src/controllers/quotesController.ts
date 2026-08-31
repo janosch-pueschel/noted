@@ -84,3 +84,42 @@ export async function create(req: Request, res: Response) {
     res.status(500).json({ message: "Failed to create quote." });
   }
 }
+
+interface UpdateQuoteData {
+  text?: string;
+  startPage?: number | null;
+  endPage?: number | null;
+  bookId?: number;
+}
+
+export async function patch(req: Request, res: Response) {
+  const quoteId = Number(req.params.quoteId);
+  const { text, startPage, endPage, bookId } = req.body;
+
+  const data: UpdateQuoteData = {};
+
+  if (text !== undefined) {
+    data.text = text;
+  }
+
+  if (startPage !== undefined) {
+    data.startPage = startPage;
+  }
+
+  if (endPage !== undefined) {
+    data.endPage = endPage;
+  }
+
+  if (bookId !== undefined) {
+    data.bookId = bookId;
+  }
+
+  try {
+    const quote = await prisma.quote.update({ where: { id: quoteId }, data });
+
+    res.json(quote);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to update quote." });
+  }
+}
