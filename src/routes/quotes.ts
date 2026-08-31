@@ -4,12 +4,19 @@ import { handleValidation } from "../middleware/validation/handleValidation";
 import {
   getQuoteByIdValidation,
   destroyQuoteValidation,
+  createQuoteValidation,
 } from "../middleware/validation/quoteValidation";
-import { getAll, getById, destroy } from "../controllers/quotesController";
+import {
+  getAll,
+  getById,
+  destroy,
+  create,
+} from "../controllers/quotesController";
 
 export const quotesRouter = Router();
 
 quotesRouter.get("/", getAll);
+
 quotesRouter.get(
   "/:quoteId",
   getQuoteByIdValidation,
@@ -23,3 +30,5 @@ quotesRouter.delete(
   handleValidation,
   destroy,
 );
+
+quotesRouter.post("/", createQuoteValidation, handleValidation, create);
