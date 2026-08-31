@@ -61,7 +61,7 @@ interface CreateQuoteData {
 export async function create(req: Request, res: Response) {
   const { text, startPage, endPage, bookId } = req.body;
 
-  let data: CreateQuoteData = { text, bookId };
+  const data: CreateQuoteData = { text, bookId };
 
   if (startPage !== undefined) {
     data.startPage = startPage;
@@ -70,8 +70,6 @@ export async function create(req: Request, res: Response) {
   if (endPage !== undefined) {
     data.endPage = endPage;
   }
-
-  console.log(data);
 
   try {
     const quote = await prisma.quote.create({
