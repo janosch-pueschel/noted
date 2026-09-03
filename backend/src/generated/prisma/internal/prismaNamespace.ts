@@ -611,7 +611,7 @@ export const BookScalarFieldEnum = {
   title: 'title',
   createdAt: 'createdAt',
   thumbnail: 'thumbnail',
-  smallThumbnail: 'smallThumbnail'
+  thumbnailSmall: 'thumbnailSmall'
 } as const
 
 export type BookScalarFieldEnum = (typeof BookScalarFieldEnum)[keyof typeof BookScalarFieldEnum]

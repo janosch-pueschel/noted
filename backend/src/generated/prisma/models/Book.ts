@@ -39,7 +39,7 @@ export type BookMinAggregateOutputType = {
   title: string | null
   createdAt: Date | null
   thumbnail: string | null
-  smallThumbnail: string | null
+  thumbnailSmall: string | null
 }
 
 export type BookMaxAggregateOutputType = {
@@ -47,7 +47,7 @@ export type BookMaxAggregateOutputType = {
   title: string | null
   createdAt: Date | null
   thumbnail: string | null
-  smallThumbnail: string | null
+  thumbnailSmall: string | null
 }
 
 export type BookCountAggregateOutputType = {
@@ -56,7 +56,7 @@ export type BookCountAggregateOutputType = {
   title: number
   createdAt: number
   thumbnail: number
-  smallThumbnail: number
+  thumbnailSmall: number
   _all: number
 }
 
@@ -74,7 +74,7 @@ export type BookMinAggregateInputType = {
   title?: true
   createdAt?: true
   thumbnail?: true
-  smallThumbnail?: true
+  thumbnailSmall?: true
 }
 
 export type BookMaxAggregateInputType = {
@@ -82,7 +82,7 @@ export type BookMaxAggregateInputType = {
   title?: true
   createdAt?: true
   thumbnail?: true
-  smallThumbnail?: true
+  thumbnailSmall?: true
 }
 
 export type BookCountAggregateInputType = {
@@ -91,7 +91,7 @@ export type BookCountAggregateInputType = {
   title?: true
   createdAt?: true
   thumbnail?: true
-  smallThumbnail?: true
+  thumbnailSmall?: true
   _all?: true
 }
 
@@ -187,7 +187,7 @@ export type BookGroupByOutputType = {
   title: string
   createdAt: Date
   thumbnail: string | null
-  smallThumbnail: string | null
+  thumbnailSmall: string | null
   _count: BookCountAggregateOutputType | null
   _avg: BookAvgAggregateOutputType | null
   _sum: BookSumAggregateOutputType | null
@@ -219,7 +219,7 @@ export type BookWhereInput = {
   title?: Prisma.StringFilter<"Book"> | string
   createdAt?: Prisma.DateTimeFilter<"Book"> | Date | string
   thumbnail?: Prisma.StringNullableFilter<"Book"> | string | null
-  smallThumbnail?: Prisma.StringNullableFilter<"Book"> | string | null
+  thumbnailSmall?: Prisma.StringNullableFilter<"Book"> | string | null
   quotes?: Prisma.QuoteListRelationFilter
 }
 
@@ -229,7 +229,7 @@ export type BookOrderByWithRelationInput = {
   title?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   thumbnail?: Prisma.SortOrderInput | Prisma.SortOrder
-  smallThumbnail?: Prisma.SortOrderInput | Prisma.SortOrder
+  thumbnailSmall?: Prisma.SortOrderInput | Prisma.SortOrder
   quotes?: Prisma.QuoteOrderByRelationAggregateInput
 }
 
@@ -242,7 +242,7 @@ export type BookWhereUniqueInput = Prisma.AtLeast<{
   title?: Prisma.StringFilter<"Book"> | string
   createdAt?: Prisma.DateTimeFilter<"Book"> | Date | string
   thumbnail?: Prisma.StringNullableFilter<"Book"> | string | null
-  smallThumbnail?: Prisma.StringNullableFilter<"Book"> | string | null
+  thumbnailSmall?: Prisma.StringNullableFilter<"Book"> | string | null
   quotes?: Prisma.QuoteListRelationFilter
 }, "id">
 
@@ -252,7 +252,7 @@ export type BookOrderByWithAggregationInput = {
   title?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   thumbnail?: Prisma.SortOrderInput | Prisma.SortOrder
-  smallThumbnail?: Prisma.SortOrderInput | Prisma.SortOrder
+  thumbnailSmall?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.BookCountOrderByAggregateInput
   _avg?: Prisma.BookAvgOrderByAggregateInput
   _max?: Prisma.BookMaxOrderByAggregateInput
@@ -269,7 +269,7 @@ export type BookScalarWhereWithAggregatesInput = {
   title?: Prisma.StringWithAggregatesFilter<"Book"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Book"> | Date | string
   thumbnail?: Prisma.StringNullableWithAggregatesFilter<"Book"> | string | null
-  smallThumbnail?: Prisma.StringNullableWithAggregatesFilter<"Book"> | string | null
+  thumbnailSmall?: Prisma.StringNullableWithAggregatesFilter<"Book"> | string | null
 }
 
 export type BookCreateInput = {
@@ -277,7 +277,7 @@ export type BookCreateInput = {
   title: string
   createdAt?: Date | string
   thumbnail?: string | null
-  smallThumbnail?: string | null
+  thumbnailSmall?: string | null
   quotes?: Prisma.QuoteCreateNestedManyWithoutBookInput
 }
 
@@ -287,7 +287,7 @@ export type BookUncheckedCreateInput = {
   title: string
   createdAt?: Date | string
   thumbnail?: string | null
-  smallThumbnail?: string | null
+  thumbnailSmall?: string | null
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutBookInput
 }
 
@@ -296,7 +296,7 @@ export type BookUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smallThumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailSmall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quotes?: Prisma.QuoteUpdateManyWithoutBookNestedInput
 }
 
@@ -306,7 +306,7 @@ export type BookUncheckedUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smallThumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailSmall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutBookNestedInput
 }
 
@@ -316,7 +316,7 @@ export type BookCreateManyInput = {
   title: string
   createdAt?: Date | string
   thumbnail?: string | null
-  smallThumbnail?: string | null
+  thumbnailSmall?: string | null
 }
 
 export type BookUpdateManyMutationInput = {
@@ -324,7 +324,7 @@ export type BookUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smallThumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailSmall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type BookUncheckedUpdateManyInput = {
@@ -333,7 +333,7 @@ export type BookUncheckedUpdateManyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smallThumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailSmall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StringNullableListFilter<$PrismaModel = never> = {
@@ -350,7 +350,7 @@ export type BookCountOrderByAggregateInput = {
   title?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   thumbnail?: Prisma.SortOrder
-  smallThumbnail?: Prisma.SortOrder
+  thumbnailSmall?: Prisma.SortOrder
 }
 
 export type BookAvgOrderByAggregateInput = {
@@ -362,7 +362,7 @@ export type BookMaxOrderByAggregateInput = {
   title?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   thumbnail?: Prisma.SortOrder
-  smallThumbnail?: Prisma.SortOrder
+  thumbnailSmall?: Prisma.SortOrder
 }
 
 export type BookMinOrderByAggregateInput = {
@@ -370,7 +370,7 @@ export type BookMinOrderByAggregateInput = {
   title?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   thumbnail?: Prisma.SortOrder
-  smallThumbnail?: Prisma.SortOrder
+  thumbnailSmall?: Prisma.SortOrder
 }
 
 export type BookSumOrderByAggregateInput = {
@@ -430,7 +430,7 @@ export type BookCreateWithoutQuotesInput = {
   title: string
   createdAt?: Date | string
   thumbnail?: string | null
-  smallThumbnail?: string | null
+  thumbnailSmall?: string | null
 }
 
 export type BookUncheckedCreateWithoutQuotesInput = {
@@ -439,7 +439,7 @@ export type BookUncheckedCreateWithoutQuotesInput = {
   title: string
   createdAt?: Date | string
   thumbnail?: string | null
-  smallThumbnail?: string | null
+  thumbnailSmall?: string | null
 }
 
 export type BookCreateOrConnectWithoutQuotesInput = {
@@ -463,7 +463,7 @@ export type BookUpdateWithoutQuotesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smallThumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailSmall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type BookUncheckedUpdateWithoutQuotesInput = {
@@ -472,7 +472,7 @@ export type BookUncheckedUpdateWithoutQuotesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  smallThumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailSmall?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -512,7 +512,7 @@ export type BookSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   title?: boolean
   createdAt?: boolean
   thumbnail?: boolean
-  smallThumbnail?: boolean
+  thumbnailSmall?: boolean
   quotes?: boolean | Prisma.Book$quotesArgs<ExtArgs>
   _count?: boolean | Prisma.BookCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["book"]>
@@ -523,7 +523,7 @@ export type BookSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   title?: boolean
   createdAt?: boolean
   thumbnail?: boolean
-  smallThumbnail?: boolean
+  thumbnailSmall?: boolean
 }, ExtArgs["result"]["book"]>
 
 export type BookSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -532,7 +532,7 @@ export type BookSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   title?: boolean
   createdAt?: boolean
   thumbnail?: boolean
-  smallThumbnail?: boolean
+  thumbnailSmall?: boolean
 }, ExtArgs["result"]["book"]>
 
 export type BookSelectScalar = {
@@ -541,10 +541,10 @@ export type BookSelectScalar = {
   title?: boolean
   createdAt?: boolean
   thumbnail?: boolean
-  smallThumbnail?: boolean
+  thumbnailSmall?: boolean
 }
 
-export type BookOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "authors" | "title" | "createdAt" | "thumbnail" | "smallThumbnail", ExtArgs["result"]["book"]>
+export type BookOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "authors" | "title" | "createdAt" | "thumbnail" | "thumbnailSmall", ExtArgs["result"]["book"]>
 export type BookInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   quotes?: boolean | Prisma.Book$quotesArgs<ExtArgs>
   _count?: boolean | Prisma.BookCountOutputTypeDefaultArgs<ExtArgs>
@@ -563,7 +563,7 @@ export type $BookPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     title: string
     createdAt: Date
     thumbnail: string | null
-    smallThumbnail: string | null
+    thumbnailSmall: string | null
   }, ExtArgs["result"]["book"]>
   composites: {}
 }
@@ -993,7 +993,7 @@ export interface BookFieldRefs {
   readonly title: Prisma.FieldRef<"Book", 'String'>
   readonly createdAt: Prisma.FieldRef<"Book", 'DateTime'>
   readonly thumbnail: Prisma.FieldRef<"Book", 'String'>
-  readonly smallThumbnail: Prisma.FieldRef<"Book", 'String'>
+  readonly thumbnailSmall: Prisma.FieldRef<"Book", 'String'>
 }
     
 

@@ -25,7 +25,7 @@ async function main() {
       authors: ["Paulo Coelho"],
       thumbnail:
         "http://books.google.com/books/content?id=-0wUnwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-      smallThumbnail:
+      thumbnailSmall:
         "http://books.google.com/books/content?id=-0wUnwEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
     },
   });
@@ -36,7 +36,7 @@ async function main() {
       authors: ["Hermann Hesse"],
       thumbnail:
         "http://books.google.com/books/content?id=f2xnKDdbdy8C&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-      smallThumbnail:
+      thumbnailSmall:
         "http://books.google.com/books/content?id=f2xnKDdbdy8C&printsec=frontcover&img=1&zoom=5&source=gbs_api",
     },
   });
