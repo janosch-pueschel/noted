@@ -4,8 +4,24 @@ import { prisma } from "../db/prismaClient";
 
 export async function getAll(req: Request, res: Response) {
   try {
-    const books = await prisma.book.findMany();
-    res.json(books);
+    const books = await prisma.book.findMany({
+      include: {
+        _count: {
+          select: { quotes: true },
+        },
+      },
+    });
+
+    const booksData = books.map((book) => {
+      const { _count, ...bookData } = book;
+
+      return {
+        ...bookData,
+        totalQuotes: _count.quotes,
+      };
+    });
+
+    res.json(booksData);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Failed to fetch books." });
