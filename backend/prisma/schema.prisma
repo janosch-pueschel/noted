@@ -13,13 +13,14 @@ datasource db {
 }
 
 model Book {
-  id        Int      @id @default(autoincrement())
-  author    String
-  title     String
-  createdAt DateTime @default(now()) @map("created_at")
-  quotes    Quote[]
+  id             Int      @id @default(autoincrement())
+  authors        String[]
+  title          String
+  createdAt      DateTime @default(now()) @map("created_at")
+  quotes         Quote[]
+  thumbnail      String?
+  smallThumbnail String?  @map("small_thumbnail")
 
-  @@unique([title, author])
   @@map("books")
 }
 

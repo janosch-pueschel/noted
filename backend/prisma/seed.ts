@@ -12,45 +12,32 @@ async function main() {
   await prisma.quote.deleteMany();
   await prisma.book.deleteMany();
 
-  const book1984 = await prisma.book.upsert({
-    where: {
-      title_author: {
-        title: "1984",
-        author: "George Orwell",
-      },
-    },
-    update: {},
-    create: {
+  const book1984 = await prisma.book.create({
+    data: {
       title: "1984",
-      author: "George Orwell",
+      authors: ["George Orwell"],
     },
   });
 
-  const bookAlchemist = await prisma.book.upsert({
-    where: {
-      title_author: {
-        title: "Der Alchimist",
-        author: "Paulo Coelho",
-      },
-    },
-    update: {},
-    create: {
+  const bookAlchemist = await prisma.book.create({
+    data: {
       title: "Der Alchimist",
-      author: "Paulo Coelho",
+      authors: ["Paulo Coelho"],
+      thumbnail:
+        "http://books.google.com/books/content?id=-0wUnwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      smallThumbnail:
+        "http://books.google.com/books/content?id=-0wUnwEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
     },
   });
 
-  const bookSiddhartha = await prisma.book.upsert({
-    where: {
-      title_author: {
-        title: "Siddhartha",
-        author: "Hermann Hesse",
-      },
-    },
-    update: {},
-    create: {
+  const bookSiddhartha = await prisma.book.create({
+    data: {
       title: "Siddhartha",
-      author: "Hermann Hesse",
+      authors: ["Hermann Hesse"],
+      thumbnail:
+        "http://books.google.com/books/content?id=f2xnKDdbdy8C&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      smallThumbnail:
+        "http://books.google.com/books/content?id=f2xnKDdbdy8C&printsec=frontcover&img=1&zoom=5&source=gbs_api",
     },
   });
 
@@ -58,32 +45,32 @@ async function main() {
     data: [
       {
         text: "Big Brother is watching you.",
-        page: 3,
+        startPage: 3,
         bookId: book1984.id,
       },
       {
         text: "War is peace. Freedom is slavery. Ignorance is strength.",
-        page: 4,
+        startPage: 4,
         bookId: book1984.id,
       },
       {
         text: "Every person has a unique path to follow.",
-        page: 27,
+        startPage: 27,
         bookId: bookAlchemist.id,
       },
       {
         text: "Dreams can point us toward what truly matters.",
-        page: 41,
+        startPage: 41,
         bookId: bookAlchemist.id,
       },
       {
         text: "Wisdom cannot simply be taught; it must be experienced.",
-        page: 18,
+        startPage: 18,
         bookId: bookSiddhartha.id,
       },
       {
         text: "The search for meaning is ultimately a personal journey.",
-        page: 52,
+        startPage: 52,
         bookId: bookSiddhartha.id,
       },
     ],
