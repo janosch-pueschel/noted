@@ -1,4 +1,4 @@
-import { body, param } from "express-validator";
+import { body, param, query } from "express-validator";
 
 export const createBookValidation = [
   body("title")
@@ -50,4 +50,8 @@ export const updateBookValidation = [
 
     return true;
   }),
+];
+
+export const searchBookValidation = [
+  query("q").trim().notEmpty().withMessage("Query string must not be empty"),
 ];

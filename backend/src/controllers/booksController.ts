@@ -86,3 +86,45 @@ export async function patch(req: Request, res: Response) {
     res.status(500).json({ message: "Failed to update book." });
   }
 }
+
+interface Book {
+  title: string;
+  authors: string[];
+  thumbnail?: string | null;
+  thumbnailSmall?: string | null;
+}
+
+export async function search(req: Request, res: Response) {
+  const query = req.query.q as string;
+  const encodedQuery = encodeURIComponent(query);
+  const apiKey = process.env.GOOGLE_BOOKS_API_KEY;
+
+  const googleQueryUrl = `https://www.googleapis.com/books/v1/volumes?q=${encodedQuery}&key=${apiKey}`;
+
+  try {
+    const googleBooksResponse = await fetch(googleQueryUrl);
+
+    if (!googleBooksResponse.ok) {
+      throw new Error("Failed to fetch books from Google Books API.");
+    }
+
+    const books: any = await googleBooksResponse.json();
+
+    const bookData: Book[] = books.items.map((item: any) => {
+      const { title, authors, imageLinks } = item.volumeInfo;
+      return {
+        title,
+        authors: authors ?? [],
+        thumbnail: imageLinks?.thumbnail ?? null,
+        thumbnailSmall: imageLinks?.smallThumbnail ?? null,
+      };
+    });
+
+    res.json({ bookData });
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .json({ message: "Failed to fetch books from Google Books API." });
+  }
+}
