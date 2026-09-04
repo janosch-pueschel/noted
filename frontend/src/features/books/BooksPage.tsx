@@ -1,6 +1,7 @@
 import type { Book } from "./types";
 import BookCard from "./components/BookCard";
 import useFetchData from "../../hooks/useFetchData";
+import ErrorMessage from "../../components/ErrorMessage";
 
 export default function BooksPage() {
   const [books, hasError, isLoading] = useFetchData<Book[]>("/books");
@@ -27,7 +28,7 @@ export default function BooksPage() {
           </div>
         )}
 
-        {hasError && <p>Unable to load books.</p>}
+        {hasError && <ErrorMessage>Failed to load books.</ErrorMessage>}
 
         {!isLoading &&
           !hasError &&

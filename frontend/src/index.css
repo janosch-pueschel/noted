@@ -19,6 +19,7 @@
   --color-alabaster-grey: #ebebea;
   --color-porcelain: #fcfbf8;
   --color-dim-grey: #66706b;
+  --color-blushed-brick: #b84a42;
   /* --color-sea-green: #32844b;
   --color-evergreen: #0d3430;
   --color-muted-olive: #a8c78e;
@@ -29,6 +30,7 @@
   --color-textSecondary: var(--color-dim-grey);
   --color-bgPrimary: var(--color-porcelain);
   --color-borderPrimary: var(--color-alabaster-grey);
+  --color-danger: var(--color-blushed-brick);
 
   --font-sans: "Inter", sans-serif;
   --font-serif: "Playfair Display", serif;
