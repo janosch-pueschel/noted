@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import BooksPage from "../features/Books/BooksPage";
+import BooksPage from "../features/books/BooksPage";
 
 export default function AppRouter() {
   return (
