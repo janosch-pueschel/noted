@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function useFetchData<T>(
-  url: string,
+  fetchUrl: string,
 ): readonly [T | null, boolean, boolean] {
   const [data, setData] = useState<T | null>(null);
   const [hasError, setHasError] = useState(false);
@@ -12,7 +12,9 @@ export default function useFetchData<T>(
       setIsLoading(true);
 
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}${url}`);
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}${fetchUrl}`,
+        );
 
         if (!response.ok) {
           throw new Error("Unable to fetch data.");
@@ -30,7 +32,7 @@ export default function useFetchData<T>(
     }
 
     fetchData();
-  }, [url]);
+  }, [fetchUrl]);
 
   return [data, hasError, isLoading];
 }
