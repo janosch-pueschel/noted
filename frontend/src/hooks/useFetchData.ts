@@ -5,7 +5,7 @@ export default function useFetchData<T>(
 ): readonly [T | null, boolean, boolean] {
   const [data, setData] = useState<T | null>(null);
   const [hasError, setHasError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
