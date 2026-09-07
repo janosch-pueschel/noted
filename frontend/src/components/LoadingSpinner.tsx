@@ -1,4 +1,10 @@
-export default function LoadingSpinner(screenReaderText: string = "Loading") {
+interface LoadingSpinnerProps {
+  screenReaderText?: string;
+}
+
+export default function LoadingSpinner({
+  screenReaderText = "Loading",
+}: LoadingSpinnerProps) {
   return (
     <div
       className="flex items-center justify-center py-16"
