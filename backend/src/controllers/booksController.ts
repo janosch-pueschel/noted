@@ -126,7 +126,9 @@ export async function search(req: Request, res: Response) {
 
     const books: any = await googleBooksResponse.json();
 
-    const bookData: Book[] = books.items.map((item: any) => {
+    const bookItems = books.items ?? [];
+
+    const bookData: Book[] = bookItems.map((item: any) => {
       const { title, authors, imageLinks } = item.volumeInfo;
       return {
         title,
@@ -136,7 +138,7 @@ export async function search(req: Request, res: Response) {
       };
     });
 
-    res.json({ bookData });
+    res.json(bookData);
   } catch (err) {
     console.error(err);
     res
