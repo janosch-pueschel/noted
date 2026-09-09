@@ -20,6 +20,7 @@ model Book {
   quotes         Quote[]
   thumbnail      String?
   thumbnailSmall String?  @map("thumbnail_small")
+  googleBooksId  String?  @unique @map("google_books_id")
 
   @@map("books")
 }
