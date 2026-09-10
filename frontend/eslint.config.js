@@ -1,22 +1,47 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
-import { defineConfig, globalIgnores } from 'eslint/config'
+import js from "@eslint/js";
+import globals from "globals";
+import reactHooks from "eslint-plugin-react-hooks";
+import reactRefresh from "eslint-plugin-react-refresh";
+import tseslint from "typescript-eslint";
+import simpleImportSort from "eslint-plugin-simple-import-sort";
+import eslintConfigPrettier from 'eslint-config-prettier'
+import { defineConfig, globalIgnores } from "eslint/config";
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(["dist"]),
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ["**/*.{ts,tsx}"],
     extends: [
       js.configs.recommended,
       tseslint.configs.recommended,
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
+      eslintConfigPrettier,
     ],
     languageOptions: {
       globals: globals.browser,
     },
+    plugins: {
+      "simple-import-sort": simpleImportSort,
+    },
+    rules: {
+      'simple-import-sort/imports': [
+        'error',
+        {
+          groups: [
+            // 1. Third-party packages
+            ['^react', '^@mui', '^@?\\w'],
+    
+            // 2. Internal aliases
+            ['^@assets', '^@components', '^@hooks'],
+    
+            // 3. Relative imports = feature-local
+            ['^\\.'],
+          ],
+        },
+      ],
+    
+      'simple-import-sort/exports': 'error',
+    },
   },
-])
+]);

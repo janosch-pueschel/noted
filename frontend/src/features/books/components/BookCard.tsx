@@ -1,6 +1,7 @@
 import { ArrowForwardIosRounded, FormatQuote } from "@mui/icons-material";
-import type { Book } from "../types";
+
 import bookPlaceholder from "../../../assets/images/book-cover_placeholder.png";
+import type { Book } from "../types";
 
 interface BookCardProps {
   key: number;

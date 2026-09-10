@@ -1,5 +1,5 @@
-import { ErrorOutlined } from "@mui/icons-material";
 import type { ReactNode } from "react";
+import { ErrorOutlined } from "@mui/icons-material";
 
 interface ErrorMessageProps {
   children: ReactNode;
