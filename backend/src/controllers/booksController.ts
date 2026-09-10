@@ -5,6 +5,7 @@ import { prisma } from "../db/prismaClient";
 export async function getAll(req: Request, res: Response) {
   try {
     const books = await prisma.book.findMany({
+      orderBy: [{ createdAt: "desc" }],
       include: {
         _count: {
           select: { quotes: true },
@@ -49,13 +50,33 @@ export async function getById(req: Request, res: Response) {
   }
 }
 
+interface CreateBookData {
+  title: string;
+  authors: string[];
+  thumbnail?: string | null;
+  thumbnailSmall?: string | null;
+  googleBooksId?: string;
+}
+
 export async function create(req: Request, res: Response) {
-  const { title, author } = req.body;
+  const { title, authors, thumbnail, thumbnailSmall, googleBooksId } = req.body;
+
+  const data: CreateBookData = { title, authors };
+
+  if (thumbnail !== undefined) {
+    data.thumbnail = thumbnail;
+  }
+
+  if (thumbnailSmall !== undefined) {
+    data.thumbnailSmall = thumbnailSmall;
+  }
+
+  if (googleBooksId !== undefined) {
+    data.googleBooksId = googleBooksId;
+  }
 
   try {
-    const book = await prisma.book.create({
-      data: { title: title, author: author },
-    });
+    const book = await prisma.book.create({ data });
     res.status(201).json(book);
   } catch (err) {
     console.error(err);
@@ -103,11 +124,12 @@ export async function patch(req: Request, res: Response) {
   }
 }
 
-interface Book {
+interface GoogleBook {
   title: string;
   authors: string[];
-  thumbnail?: string | null;
-  thumbnailSmall?: string | null;
+  thumbnail: string | null;
+  thumbnailSmall: string | null;
+  googleBooksId: string;
 }
 
 export async function search(req: Request, res: Response) {
@@ -128,9 +150,10 @@ export async function search(req: Request, res: Response) {
 
     const bookItems = books.items ?? [];
 
-    const bookData: Book[] = bookItems.map((item: any) => {
+    const bookData: GoogleBook[] = bookItems.map((item: any) => {
       const { title, authors, imageLinks } = item.volumeInfo;
       return {
+        googleBooksId: item.id,
         title,
         authors: authors ?? [],
         thumbnail: imageLinks?.thumbnail ?? null,
