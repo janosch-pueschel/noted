@@ -8,12 +8,22 @@ export const createBookValidation = [
     .isLength({ max: 255 })
     .withMessage("Title must not exceed 255 characters"),
 
-  body("author")
+  body("authors")
+    .isArray({ min: 1 })
+    .withMessage("At least one author is required"),
+
+  body("authors.*")
     .trim()
     .notEmpty()
     .withMessage("Author is required")
     .isLength({ max: 255 })
     .withMessage("Author must not exceed 255 characters"),
+
+  body("thumbnail").optional({ values: "null" }).trim().notEmpty(),
+
+  body("thumbnailSmall").optional({ values: "null" }).trim().notEmpty(),
+
+  body("googleBooksId").optional({ values: "null" }).trim().notEmpty(),
 ];
 
 export const getBookByIdValidation = [
