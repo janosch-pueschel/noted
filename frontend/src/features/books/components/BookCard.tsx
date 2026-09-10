@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ArrowForwardIosRounded, FormatQuote } from "@mui/icons-material";
 
 import bookPlaceholder from "../../../assets/images/book-cover_placeholder.png";
@@ -9,12 +10,15 @@ interface BookCardProps {
 }
 
 export default function BookCard({ book }: BookCardProps) {
-  const { title, authors, thumbnailSmall, totalQuotes } = book;
+  const { id, title, authors, thumbnailSmall, totalQuotes } = book;
 
   return (
-    <div className="flex justify-between items-center border-borderPrimary p-4 rounded-lg border-2">
+    <Link
+      to={`/books/${id}`}
+      className="flex justify-between items-center border-borderPrimary p-4 rounded-lg border-2"
+    >
       <div className="flex space-x-5 items-center">
-        <div className="w-16 shrink-0 shadow-md">
+        <div className="w-16 shrink-0 shadow-md rounded-sm overflow-hidden">
           <img
             src={thumbnailSmall ?? bookPlaceholder}
             alt=""
@@ -43,6 +47,6 @@ export default function BookCard({ book }: BookCardProps) {
         </div>
       </div>
       <ArrowForwardIosRounded className="text-textSecondary" />
-    </div>
+    </Link>
   );
 }
