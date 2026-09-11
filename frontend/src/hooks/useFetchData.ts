@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useState, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function useFetchData<T>(
   fetchUrl: string,
 ): readonly [T | null, boolean, boolean, () => Promise<void>] {
   const [data, setData] = useState<T | null>(null);
   const [hasError, setHasError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(fetchUrl.trim() !== "");
 
   const abortControllerRef = useRef<AbortController | null>(null);
 
