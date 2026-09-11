@@ -1,11 +1,20 @@
+import type { Quote } from "@features/quotes/types";
+
 export interface Book {
   id: number;
   title: string;
   authors: string[];
   thumbnail?: string | null;
   thumbnailSmall?: string | null;
-  totalQuotes: number;
   googleBooksId?: string;
+}
+
+export interface BookListItem extends Book {
+  totalQuotes: number;
+}
+
+export interface BookDetails extends BookListItem {
+  quotes: Quote[];
 }
 
 export interface GoogleBook {

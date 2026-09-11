@@ -12,11 +12,11 @@ import useFetchData from "@hooks/useFetchData";
 import useMutation from "@hooks/useMutation";
 
 import BookCard from "../components/BookCard";
-import type { Book, CreateBookData, GoogleBook } from "../types";
+import type { Book, BookListItem, CreateBookData, GoogleBook } from "../types";
 
 export default function BooksPage() {
   const [books, hasBooksError, isBooksLoading, refetchBooks] =
-    useFetchData<Book[]>("/books");
+    useFetchData<BookListItem[]>("/books");
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
