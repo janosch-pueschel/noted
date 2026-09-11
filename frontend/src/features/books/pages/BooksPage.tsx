@@ -43,7 +43,7 @@ export default function BooksPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="page-container">
       <div className="flex justify-between items-center">
         <div className="flex flex-col space-y-2">
           <h1>Books</h1>
