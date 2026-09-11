@@ -35,6 +35,12 @@ export async function getById(req: Request, res: Response) {
   try {
     const book = await prisma.book.findUnique({
       where: { id: bookId },
+      include: {
+        quotes: true,
+        _count: {
+          select: { quotes: true },
+        },
+      },
     });
 
     if (!book) {
@@ -43,7 +49,14 @@ export async function getById(req: Request, res: Response) {
       });
     }
 
-    res.json(book);
+    const { _count, ...data } = book;
+
+    const bookData = {
+      ...data,
+      totalQuotes: _count.quotes,
+    };
+
+    res.json(bookData);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Failed to fetch book." });
