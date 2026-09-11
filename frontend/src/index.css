@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("./assets/Inter-VariableFont.ttf") format("truetype");
+  src: url("./assets/fonts/Inter-Variabl eFont.ttf") format("truetype");
   font-weight: 100 900;
   font-style: normal;
 }
@@ -20,17 +20,21 @@
   --color-porcelain: #fcfbf8;
   --color-dim-grey: #66706b;
   --color-blushed-brick: #b84a42;
-  /* --color-sea-green: #32844b;
+  --color-sea-green: #32844b;
   --color-evergreen: #0d3430;
-  --color-muted-olive: #a8c78e;
   --color-old-lace: #f6f2e4;
+  /* --color-muted-olive: #a8c78e;
   --color-cinnabar: #dc4c38; */
 
   --color-textPrimary: var(--color-carbon-black);
   --color-textSecondary: var(--color-dim-grey);
+  --color-textTertiary: var(--color-old-lace);
+  --color-textHighlight: var(--color-evergreen);
   --color-bgPrimary: var(--color-porcelain);
   --color-borderPrimary: var(--color-alabaster-grey);
   --color-danger: var(--color-blushed-brick);
+  --color-buttonPrimary: var(--color-sea-green);
+  --color-buttonPrimaryHover: var(--color-evergreen);
 
   --font-sans: "Inter", sans-serif;
   --font-serif: "Playfair Display", serif;
@@ -43,5 +47,9 @@
 
   h1 {
     @apply font-serif text-2xl font-semibold;
+  }
+
+  .page-container {
+    @apply container mx-auto px-4 py-6;
   }
 }
