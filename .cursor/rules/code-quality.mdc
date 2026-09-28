@@ -1,0 +1,71 @@
+---
+description: General code quality standards for the entire Noted codebase
+alwaysApply: true
+---
+
+# Code Quality
+
+These standards apply to the entire codebase, including frontend and backend code.
+
+## General
+
+- Write simple, readable and maintainable code.
+- Prefer clear and explicit code over clever or overly concise solutions.
+- Follow existing conventions and patterns in the codebase unless there is a clear reason to change them.
+- Avoid unnecessary abstractions and premature generalization.
+- Remove unused imports, variables, functions and dead code.
+- Avoid duplicated logic when extracting shared logic clearly improves maintainability.
+- Use descriptive names that communicate intent.
+
+## TypeScript
+
+- Avoid `any`. Use proper types or `unknown` when the type is genuinely unknown.
+- Prefer type inference when the type is obvious.
+- Add explicit types when they improve readability or define an important contract.
+- Handle nullable and optional values explicitly.
+- Do not use type assertions merely to silence TypeScript errors.
+- Prefer type-safe solutions over runtime assumptions.
+
+## Functions and Components
+
+- Functions and components should have a clear responsibility.
+- Prefer early returns over deeply nested conditionals.
+- Keep functions focused and reasonably small.
+- Extract logic when doing so improves readability or reuse, not merely to reduce line count.
+- Avoid unnecessary side effects.
+
+## Error Handling
+
+- Do not silently ignore errors.
+- Handle expected failure cases explicitly.
+- Provide useful error information without exposing sensitive implementation details.
+- Consider failure states when working with asynchronous operations or external data.
+
+## Maintainability
+
+- Avoid tightly coupling unrelated parts of the application.
+- Prefer existing utilities and patterns over introducing duplicate solutions.
+- Do not introduce additional dependencies when the problem can reasonably be solved with the existing stack.
+- Keep changes focused on the task being implemented.
+
+## Code Review
+
+When reviewing code:
+
+1. Look for bugs and incorrect behavior.
+2. Look for type-safety issues.
+3. Look for missing or incorrect error handling.
+4. Look for unnecessary complexity and duplication.
+5. Look for maintainability and readability issues.
+6. Consider whether the implementation is consistent with the rest of the codebase.
+
+For every finding:
+
+- Explain what the problem is.
+- Explain why it matters.
+- Reference the relevant file and code.
+- Suggest a concrete improvement.
+- Distinguish actual problems from optional improvements.
+
+Do not modify code during a review unless explicitly asked.
+Do not suggest changes solely based on personal style preferences.
