@@ -29,8 +29,8 @@ export default function AddBookModal({
   const searchUrl =
     debouncedUserInput.trim().length < 3 ? "" : `/books/search?q=${searchTerm}`;
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.value;
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const input = event.target.value;
     setHasCreateBookFailure(false);
 
     setUserInput(input);
@@ -69,7 +69,7 @@ export default function AddBookModal({
   };
 
   return (
-    <Modal isOpen={isOpen} onClick={handleClose}>
+    <Modal isOpen={isOpen} onClick={handleClose} titleId="search-book-title">
       <div className="relative">
         <div className="flex items-start justify-between gap-4 ">
           <h2
@@ -80,7 +80,7 @@ export default function AddBookModal({
           </h2>
         </div>
 
-        <label className="mt-5 block">
+        <label className="mt-5 block" htmlFor="book-or-author-search">
           <span className="sr-only">Book title or author</span>
           <input
             type="text"
@@ -88,6 +88,7 @@ export default function AddBookModal({
             className="w-full rounded-lg border-2 border-borderPrimary bg-bgPrimary px-4 py-3 text-textPrimary outline-none placeholder:text-textSecondary focus:border-buttonPrimary"
             onChange={handleChange}
             value={userInput}
+            id="book-or-author-search"
           />
         </label>
 
