@@ -18,7 +18,7 @@ export default function QuoteCard({ quote }: QuoteCardProps) {
       </div>
 
       <div>
-        {startPage && (
+        {startPage && !endPage && (
           <p className="text-textSecondary text-sm">p. {startPage}</p>
         )}
         {startPage && endPage && (
