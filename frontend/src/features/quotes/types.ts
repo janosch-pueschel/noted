@@ -9,3 +9,10 @@ export interface Quote {
   book: Book;
   bookId: number;
 }
+
+export interface CreateQuoteData {
+  text: string;
+  startPage?: number;
+  endPage?: number;
+  bookId: number;
+}

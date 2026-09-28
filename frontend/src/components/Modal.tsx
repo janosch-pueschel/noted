@@ -5,9 +5,15 @@ interface ModalProps {
   isOpen: boolean;
   onClick: () => void;
   children: ReactNode;
+  titleId?: string;
 }
 
-export default function Modal({ isOpen, onClick, children }: ModalProps) {
+export default function Modal({
+  isOpen,
+  onClick,
+  children,
+  titleId,
+}: ModalProps) {
   return (
     <div
       className={
@@ -17,7 +23,7 @@ export default function Modal({ isOpen, onClick, children }: ModalProps) {
       }
       role="dialog"
       aria-modal="true"
-      aria-labelledby="search-book-title"
+      aria-labelledby={titleId}
     >
       <button
         type="button"

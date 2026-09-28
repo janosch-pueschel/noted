@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Add, ArrowForwardIosRounded, FormatQuote } from "@mui/icons-material";
+import AddQuoteModal from "@features/quotes/components/AddQuoteModal";
 import QuoteCard from "@features/quotes/components/QuoteCard";
 import type { Quote } from "@features/quotes/types";
 
@@ -13,7 +15,9 @@ import type { BookDetails } from "../types";
 export default function BookDetailPage() {
   const { bookId } = useParams();
 
-  const [bookDetails, hasBookDetailsError, isBookDetailsLoading] =
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [bookDetails, hasBookDetailsError, isBookDetailsLoading, refetchBook] =
     useFetchData<BookDetails>(`/books/${bookId}`);
 
   if (isBookDetailsLoading) {
@@ -54,67 +58,76 @@ export default function BookDetailPage() {
   const { title, authors, totalQuotes, thumbnail, quotes } = bookDetails;
 
   return (
-    <>
-      <div className="page-container">
-        <div className="flex items-center gap-2 text-textSecondary text-sm font-medium mb-10">
-          <Link to="/books">Books</Link>
-          <ArrowForwardIosRounded sx={{ fontSize: 12 }} />
-          <p>{title}</p>
-        </div>
+    <div className="page-container">
+      <div className="flex items-center gap-2 text-textSecondary text-sm font-medium mb-10">
+        <Link to="/books">Books</Link>
+        <ArrowForwardIosRounded sx={{ fontSize: 12 }} />
+        <p>{title}</p>
+      </div>
 
-        <div className="flex gap-10 mb-20">
-          <div className="w-1/3 shrink-0 shadow-md rounded-md overflow-hidden">
-            <img
-              src={thumbnail ?? bookPlaceholder}
-              alt=""
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <div className="flex flex-col justify-between">
-            <div className="flex flex-col space-y-3">
-              <h1>{title}</h1>
-              <p className="truncate text-textSecondary">
-                {authors.join(" · ")}
+      <div className="flex gap-10 mb-20">
+        <div className="w-1/3 shrink-0 shadow-md rounded-md overflow-hidden">
+          <img
+            src={thumbnail ?? bookPlaceholder}
+            alt=""
+            className="h-full w-full object-cover"
+          />
+        </div>
+        <div className="flex flex-col justify-between">
+          <div className="flex flex-col space-y-3">
+            <h1>{title}</h1>
+            <p className="truncate text-textSecondary">{authors.join(" · ")}</p>
+            {totalQuotes > 0 && (
+              <p className="flex space-x-1 items-center text-textSecondary">
+                <FormatQuote fontSize="small" />
+                {totalQuotes > 1 ? (
+                  <span>{`${totalQuotes} quotes`}</span>
+                ) : (
+                  <span>{`${totalQuotes} quote`}</span>
+                )}
               </p>
-              {totalQuotes > 0 && (
-                <p className="flex space-x-1 items-center text-textSecondary">
-                  <FormatQuote fontSize="small" />
-                  {totalQuotes > 1 ? (
-                    <span>{`${totalQuotes} quotes`}</span>
-                  ) : (
-                    <span>{`${totalQuotes} quote`}</span>
-                  )}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <Button onClick={() => {}}>
-                <Add className="mr-2" />
-                Add Quote
-              </Button>
-            </div>
+            )}
           </div>
-        </div>
 
-        <div>
-          <h2 className="font-serif text-xl">Quotes</h2>
-
-          {quotes.length === 0 && (
-            <p className="text-textSecondary mt-10">
-              You haven't added any quotes from this book yet.
-            </p>
-          )}
-
-          {quotes.length > 0 && (
-            <div className="flex flex-col space-y-5 mt-10">
-              {quotes.map((quote: Quote) => {
-                return <QuoteCard key={quote.id} quote={quote}></QuoteCard>;
-              })}
-            </div>
-          )}
+          <div>
+            <Button
+              onClick={() => {
+                setIsModalOpen(true);
+              }}
+            >
+              <Add className="mr-2" />
+              Add Quote
+            </Button>
+          </div>
         </div>
       </div>
-    </>
+
+      <div>
+        <h2 className="font-serif text-xl">Quotes</h2>
+
+        {quotes.length === 0 && (
+          <p className="text-textSecondary mt-10">
+            You haven't added any quotes from this book yet.
+          </p>
+        )}
+
+        {quotes.length > 0 && (
+          <div className="flex flex-col space-y-5 mt-10">
+            {quotes.map((quote: Quote) => {
+              return <QuoteCard key={quote.id} quote={quote}></QuoteCard>;
+            })}
+          </div>
+        )}
+      </div>
+
+      <AddQuoteModal
+        isOpen={isModalOpen}
+        closeModal={() => {
+          setIsModalOpen(false);
+        }}
+        bookId={bookDetails.id}
+        refetchBook={refetchBook}
+      />
+    </div>
   );
 }
