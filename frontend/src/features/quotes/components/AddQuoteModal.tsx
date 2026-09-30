@@ -174,21 +174,22 @@ export default function AddQuoteModal({
 
         <form className="mt-5" noValidate onSubmit={handleSubmit}>
           <label className="block" htmlFor="quote-text">
-            <span className="mb-2 block text-sm font-medium">Quote</span>
+            <span className="mb-2 block">Quote Text</span>
             <textarea
               id="quote-text"
               rows={4}
               className={inputClassName}
               value={quoteText}
               onChange={handleTextChange}
+              placeholder="Enter your quote here..."
             />
           </label>
 
           <div className="mt-5 grid grid-cols-2 gap-4">
             <label className="block" htmlFor="quote-start-page">
-              <span className="mb-2 block text-sm font-medium">
-                Start page{" "}
-                <span className="font-normal text-textSecondary">
+              <span className="mb-2 block">
+                Start Page{" "}
+                <span className="font-normal text-textSecondary text-xs">
                   (optional)
                 </span>
               </span>
@@ -199,13 +200,14 @@ export default function AddQuoteModal({
                 className={inputClassName}
                 value={startPage}
                 onChange={handleStartPageChange}
+                placeholder="e.g. 37"
               />
             </label>
 
             <label className="block" htmlFor="quote-end-page">
-              <span className="mb-2 block text-sm font-medium">
-                End page{" "}
-                <span className="font-normal text-textSecondary">
+              <span className="mb-2 block">
+                End Page{" "}
+                <span className="font-normal text-textSecondary text-xs">
                   (optional)
                 </span>
               </span>
@@ -216,6 +218,7 @@ export default function AddQuoteModal({
                 className={inputClassName}
                 value={endPage}
                 onChange={handleEndPageChange}
+                placeholder="e.g. 39"
               />
             </label>
           </div>
@@ -234,9 +237,12 @@ export default function AddQuoteModal({
             </div>
           )}
 
-          <div className="mt-5 flex justify-end">
+          <div className="mt-16 flex justify-end gap-3">
+            <Button onClick={closeModal} variant="secondary">
+              Cancel
+            </Button>
             <Button type="submit" disabled={isCreating}>
-              Add Quote
+              Save Quote
             </Button>
           </div>
         </form>
